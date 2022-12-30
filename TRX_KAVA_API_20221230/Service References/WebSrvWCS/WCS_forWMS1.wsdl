@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="MoveTask">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="from" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="to" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Task_number" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="barcode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="out_number" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MoveTaskResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MoveTaskResult" type="tns:WCS_Ask_Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="WCS_Ask_Result">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="result" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="error_code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="error_message" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ask_num" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="place_instock" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sorting_port" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="pallet_wrapping" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="task_num" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="reserve_field1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="reserve_field2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="reserve_field3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="reserve_field4" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="reserve_field5" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="OutTask">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="from" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="to" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Task_number" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="barcode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="res" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="OutTaskResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="OutTaskResult" type="tns:WCS_Ask_Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InTask">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="from" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="to" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Task_number" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="barcode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InTaskResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InTaskResult" type="tns:WCS_Ask_Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ContainerOutConveyorAskToNewPort">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="from" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="to" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Task_number" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="barcode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ContainerOutConveyorAskToNewPortResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ContainerOutConveyorAskToNewPortResult" type="tns:WCS_Ask_Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WCS_Ask_Result" nillable="true" type="tns:WCS_Ask_Result" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="MoveTaskSoapIn">
+    <wsdl:part name="parameters" element="tns:MoveTask" />
+  </wsdl:message>
+  <wsdl:message name="MoveTaskSoapOut">
+    <wsdl:part name="parameters" element="tns:MoveTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="OutTaskSoapIn">
+    <wsdl:part name="parameters" element="tns:OutTask" />
+  </wsdl:message>
+  <wsdl:message name="OutTaskSoapOut">
+    <wsdl:part name="parameters" element="tns:OutTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="InTaskSoapIn">
+    <wsdl:part name="parameters" element="tns:InTask" />
+  </wsdl:message>
+  <wsdl:message name="InTaskSoapOut">
+    <wsdl:part name="parameters" element="tns:InTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="ContainerOutConveyorAskToNewPortSoapIn">
+    <wsdl:part name="parameters" element="tns:ContainerOutConveyorAskToNewPort" />
+  </wsdl:message>
+  <wsdl:message name="ContainerOutConveyorAskToNewPortSoapOut">
+    <wsdl:part name="parameters" element="tns:ContainerOutConveyorAskToNewPortResponse" />
+  </wsdl:message>
+  <wsdl:message name="MoveTaskHttpGetIn">
+    <wsdl:part name="from" type="s:string" />
+    <wsdl:part name="to" type="s:string" />
+    <wsdl:part name="Task_number" type="s:string" />
+    <wsdl:part name="barcode" type="s:string" />
+    <wsdl:part name="out_number" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="MoveTaskHttpGetOut">
+    <wsdl:part name="Body" element="tns:WCS_Ask_Result" />
+  </wsdl:message>
+  <wsdl:message name="OutTaskHttpGetIn">
+    <wsdl:part name="from" type="s:string" />
+    <wsdl:part name="to" type="s:string" />
+    <wsdl:part name="Task_number" type="s:string" />
+    <wsdl:part name="barcode" type="s:string" />
+    <wsdl:part name="res" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="OutTaskHttpGetOut">
+    <wsdl:part name="Body" element="tns:WCS_Ask_Result" />
+  </wsdl:message>
+  <wsdl:message name="InTaskHttpGetIn">
+    <wsdl:part name="from" type="s:string" />
+    <wsdl:part name="to" type="s:string" />
+    <wsdl:part name="Task_number" type="s:string" />
+    <wsdl:part name="barcode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InTaskHttpGetOut">
+    <wsdl:part name="Body" element="tns:WCS_Ask_Result" />
+  </wsdl:message>
+  <wsdl:message name="ContainerOutConveyorAskToNewPortHttpGetIn">
+    <wsdl:part name="from" type="s:string" />
+    <wsdl:part name="to" type="s:string" />
+    <wsdl:part name="Task_number" type="s:string" />
+    <wsdl:part name="barcode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ContainerOutConveyorAskToNewPortHttpGetOut">
+    <wsdl:part name="Body" element="tns:WCS_Ask_Result" />
+  </wsdl:message>
+  <wsdl:message name="MoveTaskHttpPostIn">
+    <wsdl:part name="from" type="s:string" />
+    <wsdl:part name="to" type="s:string" />
+    <wsdl:part name="Task_number" type="s:string" />
+    <wsdl:part name="barcode" type="s:string" />
+    <wsdl:part name="out_number" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="MoveTaskHttpPostOut">
+    <wsdl:part name="Body" element="tns:WCS_Ask_Result" />
+  </wsdl:message>
+  <wsdl:message name="OutTaskHttpPostIn">
+    <wsdl:part name="from" type="s:string" />
+    <wsdl:part name="to" type="s:string" />
+    <wsdl:part name="Task_number" type="s:string" />
+    <wsdl:part name="barcode" type="s:string" />
+    <wsdl:part name="res" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="OutTaskHttpPostOut">
+    <wsdl:part name="Body" element="tns:WCS_Ask_Result" />
+  </wsdl:message>
+  <wsdl:message name="InTaskHttpPostIn">
+    <wsdl:part name="from" type="s:string" />
+    <wsdl:part name="to" type="s:string" />
+    <wsdl:part name="Task_number" type="s:string" />
+    <wsdl:part name="barcode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InTaskHttpPostOut">
+    <wsdl:part name="Body" element="tns:WCS_Ask_Result" />
+  </wsdl:message>
+  <wsdl:message name="ContainerOutConveyorAskToNewPortHttpPostIn">
+    <wsdl:part name="from" type="s:string" />
+    <wsdl:part name="to" type="s:string" />
+    <wsdl:part name="Task_number" type="s:string" />
+    <wsdl:part name="barcode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ContainerOutConveyorAskToNewPortHttpPostOut">
+    <wsdl:part name="Body" element="tns:WCS_Ask_Result" />
+  </wsdl:message>
+  <wsdl:portType name="WCS_forWMSSoap">
+    <wsdl:operation name="MoveTask">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">WMS下发移库任务</wsdl:documentation>
+      <wsdl:input message="tns:MoveTaskSoapIn" />
+      <wsdl:output message="tns:MoveTaskSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="OutTask">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">WMS下发出库任务</wsdl:documentation>
+      <wsdl:input message="tns:OutTaskSoapIn" />
+      <wsdl:output message="tns:OutTaskSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InTask">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">WMS下发入库任务</wsdl:documentation>
+      <wsdl:input message="tns:InTaskSoapIn" />
+      <wsdl:output message="tns:InTaskSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ContainerOutConveyorAskToNewPort">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">WMS下发输送线任务</wsdl:documentation>
+      <wsdl:input message="tns:ContainerOutConveyorAskToNewPortSoapIn" />
+      <wsdl:output message="tns:ContainerOutConveyorAskToNewPortSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="WCS_forWMSHttpGet">
+    <wsdl:operation name="MoveTask">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">WMS下发移库任务</wsdl:documentation>
+      <wsdl:input message="tns:MoveTaskHttpGetIn" />
+      <wsdl:output message="tns:MoveTaskHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="OutTask">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">WMS下发出库任务</wsdl:documentation>
+      <wsdl:input message="tns:OutTaskHttpGetIn" />
+      <wsdl:output message="tns:OutTaskHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InTask">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">WMS下发入库任务</wsdl:documentation>
+      <wsdl:input message="tns:InTaskHttpGetIn" />
+      <wsdl:output message="tns:InTaskHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ContainerOutConveyorAskToNewPort">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">WMS下发输送线任务</wsdl:documentation>
+      <wsdl:input message="tns:ContainerOutConveyorAskToNewPortHttpGetIn" />
+      <wsdl:output message="tns:ContainerOutConveyorAskToNewPortHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="WCS_forWMSHttpPost">
+    <wsdl:operation name="MoveTask">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">WMS下发移库任务</wsdl:documentation>
+      <wsdl:input message="tns:MoveTaskHttpPostIn" />
+      <wsdl:output message="tns:MoveTaskHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="OutTask">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">WMS下发出库任务</wsdl:documentation>
+      <wsdl:input message="tns:OutTaskHttpPostIn" />
+      <wsdl:output message="tns:OutTaskHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InTask">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">WMS下发入库任务</wsdl:documentation>
+      <wsdl:input message="tns:InTaskHttpPostIn" />
+      <wsdl:output message="tns:InTaskHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ContainerOutConveyorAskToNewPort">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">WMS下发输送线任务</wsdl:documentation>
+      <wsdl:input message="tns:ContainerOutConveyorAskToNewPortHttpPostIn" />
+      <wsdl:output message="tns:ContainerOutConveyorAskToNewPortHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WCS_forWMSSoap" type="tns:WCS_forWMSSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="MoveTask">
+      <soap:operation soapAction="http://tempuri.org/MoveTask" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OutTask">
+      <soap:operation soapAction="http://tempuri.org/OutTask" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InTask">
+      <soap:operation soapAction="http://tempuri.org/InTask" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ContainerOutConveyorAskToNewPort">
+      <soap:operation soapAction="http://tempuri.org/ContainerOutConveyorAskToNewPort" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WCS_forWMSSoap12" type="tns:WCS_forWMSSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="MoveTask">
+      <soap12:operation soapAction="http://tempuri.org/MoveTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OutTask">
+      <soap12:operation soapAction="http://tempuri.org/OutTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InTask">
+      <soap12:operation soapAction="http://tempuri.org/InTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ContainerOutConveyorAskToNewPort">
+      <soap12:operation soapAction="http://tempuri.org/ContainerOutConveyorAskToNewPort" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WCS_forWMSHttpGet" type="tns:WCS_forWMSHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="MoveTask">
+      <http:operation location="/MoveTask" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OutTask">
+      <http:operation location="/OutTask" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InTask">
+      <http:operation location="/InTask" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ContainerOutConveyorAskToNewPort">
+      <http:operation location="/ContainerOutConveyorAskToNewPort" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WCS_forWMSHttpPost" type="tns:WCS_forWMSHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="MoveTask">
+      <http:operation location="/MoveTask" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OutTask">
+      <http:operation location="/OutTask" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InTask">
+      <http:operation location="/InTask" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ContainerOutConveyorAskToNewPort">
+      <http:operation location="/ContainerOutConveyorAskToNewPort" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WCS_forWMS">
+    <wsdl:port name="WCS_forWMSSoap" binding="tns:WCS_forWMSSoap">
+      <soap:address location="http://192.168.30.4/TRX_WCS_API/WebServices/WCS_forWMS.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WCS_forWMSSoap12" binding="tns:WCS_forWMSSoap12">
+      <soap12:address location="http://192.168.30.4/TRX_WCS_API/WebServices/WCS_forWMS.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WCS_forWMSHttpGet" binding="tns:WCS_forWMSHttpGet">
+      <http:address location="http://192.168.30.4/TRX_WCS_API/WebServices/WCS_forWMS.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WCS_forWMSHttpPost" binding="tns:WCS_forWMSHttpPost">
+      <http:address location="http://192.168.30.4/TRX_WCS_API/WebServices/WCS_forWMS.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
